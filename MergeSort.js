@@ -22,9 +22,25 @@ function mergeSort(array) {
     let right = mergeSort(array.slice(middleIndex));
 
     // The ACTUAL SORTING
-    let sortedValue = [];
+    let sortedValues = [];
     let leftIndexSlider = 0;
     let rightIndexSlider = 0; // on each recursion iteration, this will reset to ZERO, becuase we initialize again
-    
 
+    // if index haven't reach the end, we continue
+ while(leftIndexSlider < left.length && rightIndexSlider < right.length){
+if (left[leftIndexSlider] < right[rightIndexSlider]) {
+    sortedValues.push(left[leftIndexSlider]);
+    leftIndexSlider += 1;
+} else {
+    sortedValues.push(right[rightIndexSlider]);
+    rightIndexSlider += 1;
 }
+ }
+ // this is currently imperfect algorithm because it will have leftover values in the left or right array;
+
+ sortedValues.push(...left.slice(leftIndexSlider));
+ sortedValues.push(...right.slice(rightIndexSlider));
+
+ return sortedValues;
+}
+module.exports = mergeSort;
